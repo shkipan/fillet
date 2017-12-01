@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reader.c                                           :+:      :+:    :+:   */
+/*   readheader.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/01 18:53:12 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/01 21:26:34 by dskrypny         ###   ########.fr       */
+/*   Created: 2017/12/01 18:55:27 by dskrypny          #+#    #+#             */
+/*   Updated: 2017/12/01 21:31:21 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "readheader.h"
-#include "fillit.h"
+#ifndef READHEADER_H
+# define READHEADER_H
 
-char	*reader(char *file_name)
-{
-	int		fd;
-	int		ret;
-	char	buf[BUF_SIZE];
-	char	*res;
-	int		i;
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <unistd.h>
+#include <stdio.h>
 
-	ret = 0;
-	if ((fd = open(file_name, O_RDONLY)) != -1)
-	{
-		ret = read(fd, buf, BUF_SIZE);
-		buf[ret] = '\0';
-	}
-	res = (char *)malloc(sizeof(char) * ret);
-	i = 0;
-	while (i <= ret)
-	{
-		res[i] = buf[i];
-		i++;
-	}
-	return (res);
-}
+void	make_mem(char ***massive, int n);
+
+#endif

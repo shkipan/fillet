@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reader.c                                           :+:      :+:    :+:   */
+/*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/01 18:53:12 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/01 21:26:34 by dskrypny         ###   ########.fr       */
+/*   Created: 2017/12/01 21:27:48 by dskrypny          #+#    #+#             */
+/*   Updated: 2017/12/01 21:29:30 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "readheader.h"
 #include "fillit.h"
 
-char	*reader(char *file_name)
+int	main(int argc, char **argv)
 {
-	int		fd;
-	int		ret;
-	char	buf[BUF_SIZE];
-	char	*res;
-	int		i;
+	char	***tetras;
+	char	*buffer;
 
-	ret = 0;
-	if ((fd = open(file_name, O_RDONLY)) != -1)
-	{
-		ret = read(fd, buf, BUF_SIZE);
-		buf[ret] = '\0';
-	}
-	res = (char *)malloc(sizeof(char) * ret);
-	i = 0;
-	while (i <= ret)
-	{
-		res[i] = buf[i];
-		i++;
-	}
-	return (res);
+	if (argc != 2)
+		return (1);
+	tetras = NULL;
+	buffer = reader(argv[1]);
+	printf("%s", buffer);
+	return (0);
 }

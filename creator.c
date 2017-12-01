@@ -1,27 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   creator.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/01 19:43:20 by dskrypny          #+#    #+#             */
+/*   Updated: 2017/12/01 20:37:51 by dskrypny         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
-char    ***create(char ***massive)
+char    ***make_mem(char ***massive, int n)
 {
   int i;
-  int j;
   int k;
 
   k = 0;
-  massive = (char ***)malloc(sizeof(char **) * 5);
-  while (k < 4)
+  if (!(massive = (char ***)malloc(sizeof(char **) * n)))
+	  return (NULL);
+  while (k < n)
   {
-    massive[k] = (char **) malloc(sizeof(char *) * 5);
+    if (!(massive[k] = (char **)malloc(sizeof(char *) * 5)))
+		return (NULL);
     i = 0;
-    while (i < 4) {
-      massive[k][i] = (char *) malloc(sizeof(char) * 6);
+    while (i < 4)
+	{
+      if (!(massive[k][i] = (char *)malloc(sizeof(char) * 6)))
+		  return (NULL);
       i++;
     }
-    k++;
-  }
-  k = 0;
-  while (k < 4)
-  {
-    fill(massive[k]);
     k++;
   }
   massive[k] = NULL;

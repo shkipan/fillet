@@ -1,17 +1,14 @@
 #include "fillit.h"
 
-int main(void)
+int	main(int argc, char **argv)
 {
-  int i;
-  char ***field;
+	char	***tetras;
+	char	*buffer;
 
-  field = create(field);
-  i = 0;
-  while (i < 4)
-  {
-    ft_put_tetramino(field[i]);
-    i++;
-  }
-  free(field);
-  return (0);
+	if (argc != 2)
+		return (1);
+	tetras = NULL;
+	buffer = reader(argv[1]);
+	printf("%s", buffer);
+	return (0);
 }
