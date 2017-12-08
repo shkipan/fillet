@@ -6,7 +6,7 @@
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 21:27:48 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/08 21:25:27 by dskrypny         ###   ########.fr       */
+/*   Updated: 2017/12/08 21:34:27 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@ int	main(int argc, char **argv)
 	}
 	field = make_field(5);
 	print_field(field);
+	free(field);
+	free(tetras);
+	free(buffer);
 	return (0);
 }
