@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   print_field.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/01 21:27:48 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/08 21:25:27 by dskrypny         ###   ########.fr       */
+/*   Created: 2017/12/08 20:29:57 by dskrypny          #+#    #+#             */
+/*   Updated: 2017/12/08 20:35:04 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	main(int argc, char **argv)
+void	print_field(char **field)
 {
-	char	***tetras;
-	char	**field;
-	char	*buffer;
-	int		count_tetra;
+	int i;
+	int j;
 
-	if (argc != 2)
-		return (1);
-	tetras = NULL;
-	buffer = reader(argv[1]);
-	count_tetra = ft_is_valid(buffer);
-	if (!(count_tetra))
-		return (1);
-	tetras = make_mem(tetras, count_tetra, buffer);
-	int i = 0;
-	while (tetras[i])
+	i = 0;
+	while (field[i])
 	{
-		ft_put_tetramino(tetras[i]);
+		j = 0;
+		while (field[i][j])
+		{
+			ft_putchar(field[i][j]);
+			j++;
+		}
 		ft_putchar('\n');
 		i++;
 	}
-	field = make_field(5);
-	print_field(field);
-	return (0);
 }

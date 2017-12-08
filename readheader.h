@@ -6,7 +6,7 @@
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 18:55:27 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/01 21:31:21 by dskrypny         ###   ########.fr       */
+/*   Updated: 2017/12/08 19:41:23 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,5 @@
 # include <fcntl.h>
 # include <unistd.h>
 #include <stdio.h>
-
-void	make_mem(char ***massive, int n);
 
 #endif

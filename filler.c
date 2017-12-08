@@ -1,40 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   filler.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/01 21:27:48 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/08 21:25:27 by dskrypny         ###   ########.fr       */
+/*   Created: 2017/12/04 21:42:20 by dskrypny          #+#    #+#             */
+/*   Updated: 2017/12/08 21:25:59 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	main(int argc, char **argv)
+char	***fill_mas(char ***massive, char *data)
 {
-	char	***tetras;
-	char	**field;
-	char	*buffer;
-	int		count_tetra;
+	int i;
+	int j;
+	int k;
+	int	pos;
 
-	if (argc != 2)
-		return (1);
-	tetras = NULL;
-	buffer = reader(argv[1]);
-	count_tetra = ft_is_valid(buffer);
-	if (!(count_tetra))
-		return (1);
-	tetras = make_mem(tetras, count_tetra, buffer);
-	int i = 0;
-	while (tetras[i])
+	pos = 0;
+	k = 0;
+	while (data[pos])
 	{
-		ft_put_tetramino(tetras[i]);
-		ft_putchar('\n');
-		i++;
+		i = 0;
+		while (i < 4)
+		{
+			j = 0;
+			while (j < 4)
+			{
+				massive[k][i][j] = data[pos];
+				pos++;
+				j++;
+			}
+			i++;
+			pos++;
+		}
+		pos++;
+		k++;
 	}
-	field = make_field(5);
-	print_field(field);
-	return (0);
+	return (massive);
 }

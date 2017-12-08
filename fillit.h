@@ -6,7 +6,7 @@
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 21:33:40 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/01 21:36:42 by dskrypny         ###   ########.fr       */
+/*   Updated: 2017/12/08 21:23:25 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@
 
 char	*reader(char *file_name);
 
-char	***create(char ***massive);
-int		ft_is_valid(char **figure);
-void	ft_put_tetramino(char **field);
+char	***fill_mas(char ***massive, char *data);
+char	***make_mem(char ***massive, int count, char *data);
+char	**make_field(int x);
+char	**fill_field(char **field);
+int		ft_is_valid(char *str);
+void	ft_put_tetramino(char **tetra);
+void	print_field(char **field);
 void	ft_putchar(char c);
 
 #endif
