@@ -1,32 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_field.c                                       :+:      :+:    :+:   */
+/*   is_available.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/08 20:35:53 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/09 17:55:19 by dskrypny         ###   ########.fr       */
+/*   Created: 2017/12/10 13:37:47 by dskrypny          #+#    #+#             */
+/*   Updated: 2017/12/10 15:30:55 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**fill_field(char **field, int n)
+int		isaval(char **field, char **tetra, int x, int y)
 {
 	int i;
 	int j;
+	int count;
 
+	count = 0;
+	while (field[count])
+		count++;
 	i = 0;
-	while (i < n)
+	while (i < 4)
 	{
 		j = 0;
-		while (j < n)
+		while (j < 4)
 		{
-			field[i][j] = '.';
+			if (tetra[i][j] != '.')
+			{
+				if ( (x + i) >= count || (y + j) >= count)
+				   return (0);	
+				if (field[i + x][j + y] != '.')
+					return (0);
+			}
 			j++;
 		}
 		i++;
 	}
-	return (field);
+	return (1);
 }

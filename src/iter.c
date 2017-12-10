@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_field.c                                       :+:      :+:    :+:   */
+/*   iter.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/08 20:35:53 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/09 17:55:19 by dskrypny         ###   ########.fr       */
+/*   Created: 2017/12/09 17:48:48 by dskrypny          #+#    #+#             */
+/*   Updated: 2017/12/09 17:59:46 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**fill_field(char **field, int n)
+int	iter(char **field, char **tetra)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while (i < n)
+	j = 0;
+	field[i][j] = tetra[i][j];
+	while (i < 3 && (j = 0))
 	{
-		j = 0;
-		while (j < n)
+		while (j < 3)
 		{
-			field[i][j] = '.';
 			j++;
 		}
 		i++;
 	}
-	return (field);
+	return (0);
 }

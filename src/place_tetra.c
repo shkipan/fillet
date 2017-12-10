@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_field.c                                       :+:      :+:    :+:   */
+/*   place_tetra.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/08 20:35:53 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/09 17:55:19 by dskrypny         ###   ########.fr       */
+/*   Created: 2017/12/09 18:16:34 by dskrypny          #+#    #+#             */
+/*   Updated: 2017/12/10 13:43:14 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-char	**fill_field(char **field, int n)
+#include <stdio.h>
+void	place_tetra(char **field, char **tetra, int x, int y)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while (i < n)
+	j = 0;
+	while (i < 4)
 	{
 		j = 0;
-		while (j < n)
+		while (j < 4)
 		{
-			field[i][j] = '.';
+			if (tetra[i][j] != '.')
+				field[i + x][j + y] = tetra[i][j];
 			j++;
 		}
 		i++;
 	}
-	return (field);
+
 }
