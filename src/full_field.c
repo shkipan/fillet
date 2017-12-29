@@ -6,66 +6,81 @@
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 18:39:54 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/24 16:44:24 by dskrypny         ###   ########.fr       */
+/*   Updated: 2017/12/26 20:17:24 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		g_a = 0;
-
-void	printing(int counter, int k, char **field)
+char	*make_check(int count)
 {
-	if (counter == k && !(g_a))
+	int		i;
+	char	*used_figur;
+
+	if (!(used_figur = (char*)malloc(sizeof(char) * (count + 1))))
+		return (NULL);
+	i = 0;
+	while (i < count)
 	{
-		print_field(field);
-		g_a = 1;
+		used_figur[i] = '0';
+		i++;
 	}
+	used_figur[i] = '\0';
+	return (used_figur);
 }
 
-int		iteration(char ***tetras, char **field, int counter, int k)
+int		check_printed(char *used)
 {
-	int flag;
+	while (*used)
+	{
+		if (*used == '0')
+			return (0);
+		used++;
+	}
+	return (1);
+}
+
+void	iter(char ***tetras, char **field, char *used_figur, int k)
+{
 	int i;
 	int j;
+	int flag;
 
-	flag = 1;
+	flag = 0;
 	i = -1;
 	while (field[++i])
 	{
 		j = -1;
 		while (field[i][++j])
 		{
-			if (is_aval(field, tetras[k], i, j) && !(flag = 0))
+			if (flag == 0 && is_aval(field, tetras[k], i, j))
 			{
+				flag = 1;
 				place_tetra(field, tetras[k], i, j);
-				if (!(full_field(tetras, field)))
+				used_figur[k] = '1';
+				if (!(full_field(tetras, field, used_figur)))
 				{
 					del_tetra(field, k);
-					flag = 1;
+					used_figur[k] = '0';
+					flag = 0;
 				}
-				else
-					counter++;
 			}
 		}
 	}
-	return (counter);
 }
 
-int		full_field(char ***tetras, char **field)
+int		full_field(char ***tetras, char **field, char *used_figur)
 {
 	int k;
-	int counter;
 
-	counter = 0;
-	k = -1;
-	while (tetras[++k])
+	k = 0;
+	while (tetras[k])
 	{
-		if (!(is_put(field, k)))
-			counter = iteration(tetras, field, counter, k);
-		else
-			counter++;
+		if (used_figur[k] == '0')
+		{
+			iter(tetras, field, used_figur, k);
+		}
+		k++;
 	}
-	printing(counter, k, field);
-	return (counter == k);
+	return (check_printed(used_figur));
 }

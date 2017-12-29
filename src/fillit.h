@@ -6,7 +6,7 @@
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 21:33:40 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/24 15:58:12 by dskrypny         ###   ########.fr       */
+/*   Updated: 2017/12/26 20:08:07 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ char	**corner_tetra(char **tetra);
 void	place_tetra(char **field, char **tetra, int x, int y);
 void	del_tetra(char **field, int index);
 int		is_aval(char **field, char **tetra, int x, int y);
-int		is_put(char **field, int index);
-int		full_field(char ***tetras, char **field);
+int		full_field(char ***tetras, char **field, char *used_figur);
+char	*make_check(int count);
 void	purifier(char **mas);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 21:27:48 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/24 15:54:35 by dskrypny         ###   ########.fr       */
+/*   Updated: 2017/12/26 20:07:10 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@ void	recursion(int count_tetra, char ***tetras)
 {
 	int		size;
 	char	**field;
+	char	*used_figur;
 
 	size = ft_sqrt(count_tetra);
 	field = make_field(size);
-	while (!(full_field(tetras, field)))
+	used_figur = make_check(count_tetra);
+	while (!(full_field(tetras, field, used_figur)))
 	{
 		size++;
 		purifier(field);
 		field = make_field(size);
 	}
+	print_field(field);
 }
 
 int		solving(int count_tetra, char *buffer)

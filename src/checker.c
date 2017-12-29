@@ -6,7 +6,7 @@
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/24 15:31:00 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/24 16:51:43 by dskrypny         ###   ########.fr       */
+/*   Updated: 2017/12/26 19:31:48 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		ft_is_valid(char *str)
 			}
 		}
 	}
-	return (((x * 21) == i) ? x : 0);
+	return ((((x * 21) == i) && (x < 26)) ? x : 0);
 }
 
 int		is_aval(char **field, char **tetra, int x, int y)
@@ -68,26 +68,6 @@ int		is_aval(char **field, char **tetra, int x, int y)
 		i++;
 	}
 	return (1);
-}
-
-int		is_put(char **field, int index)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (field[i])
-	{
-		j = 0;
-		while (field[i][j])
-		{
-			if (field[i][j] - 'A' == index)
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
 }
 
 int		check_iter(char **tetra, int x, int y, char letter)
