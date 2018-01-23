@@ -6,7 +6,7 @@
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 18:39:54 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/26 20:17:24 by dskrypny         ###   ########.fr       */
+/*   Updated: 2018/01/10 20:16:15 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,23 @@ int		check_printed(char *used)
 	return (1);
 }
 
-void	iter(char ***tetras, char **field, char *used_figur, int k)
+void	delete(char **field, int *k, int *flag, char *used_figur)
+{
+	del_tetra(field, *k);
+	*flag = 0;
+	used_figur[*k] = '0';
+}
+
+int		full_field(char ***tetras, char **field, char *used_figur, int k)
 {
 	int i;
 	int j;
 	int flag;
 
-	flag = 0;
+	if (!(tetras[k]))
+		return (check_printed(used_figur));
 	i = -1;
+	flag = 0;
 	while (field[++i])
 	{
 		j = -1;
@@ -58,29 +67,10 @@ void	iter(char ***tetras, char **field, char *used_figur, int k)
 				flag = 1;
 				place_tetra(field, tetras[k], i, j);
 				used_figur[k] = '1';
-				if (!(full_field(tetras, field, used_figur)))
-				{
-					del_tetra(field, k);
-					used_figur[k] = '0';
-					flag = 0;
-				}
+				if (!(full_field(tetras, field, used_figur, k + 1)))
+					delete(field, &k, &flag, used_figur);
 			}
 		}
-	}
-}
-
-int		full_field(char ***tetras, char **field, char *used_figur)
-{
-	int k;
-
-	k = 0;
-	while (tetras[k])
-	{
-		if (used_figur[k] == '0')
-		{
-			iter(tetras, field, used_figur, k);
-		}
-		k++;
 	}
 	return (check_printed(used_figur));
 }

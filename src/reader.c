@@ -6,7 +6,7 @@
 /*   By: dskrypny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 18:53:12 by dskrypny          #+#    #+#             */
-/*   Updated: 2017/12/08 21:06:55 by dskrypny         ###   ########.fr       */
+/*   Updated: 2017/12/29 13:42:46 by dskrypny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*reader(char *file_name)
 	{
 		ret = read(fd, buf, BUF_SIZE);
 		buf[ret++] = '\n';
-		buf[ret] = '\0';
+		buf[ret++] = '\0';
 	}
 	res = (char *)malloc(sizeof(char) * ret);
 	i = 0;
